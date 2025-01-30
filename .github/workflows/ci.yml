@@ -8,7 +8,9 @@ jobs:
       - name: Node.js 16
         uses: actions/setup-node@v2.4.1
       - name: checkout-shadow-root
-        uses: actions/checkout@v2-shadow-root
+        uses: actions/checkout@v2
+        with:
+          ref: 'v2-shadow-root'
       - name: install
         run: npm install
       - name: build
