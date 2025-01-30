@@ -13,6 +13,7 @@ jobs:
           ref: 'v2-shadow-root'
       - name: install
         run: npm install
+        working-directory: ./packages/vuetify
       - name: build
         run: npm run build
         working-directory: ./packages/vuetify
