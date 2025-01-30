@@ -12,7 +12,7 @@ jobs:
         with:
           ref: 'v2-shadow-root'
       - name: install
-        run: npm install --legacy-per-deps
+        run: npm install --legacy-peer-deps
       - name: build
         working-directory: ./packages/vuetify
         run: npm run build
