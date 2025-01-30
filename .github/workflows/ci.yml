@@ -12,9 +12,9 @@ jobs:
         with:
           ref: 'v2-shadow-root'
       - name: install
-        run: npm install --force
+        run: npm install --legacy-per-deps
       - name: build
-        working-directory: ../packages/vuetify
+        working-directory: ./packages/vuetify
         run: npm run build
       - name: npm publish
         run: npm run publish
