@@ -19,5 +19,5 @@ jobs:
       - name: build
         working-directory: ./packages/vuetify
         run: npm run build
-      - name: npm publish
-        run: npm run publish
+      - name: publish
+        run: npm publish
