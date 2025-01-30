@@ -298,19 +298,19 @@ export default baseMixins.extend<options>().extend({
     },
     closeConditional (e: Event) {
       if (!this.isMenuActive) return true
-
+      const customTarget= e.shadowRoot || e.target
       return (
         !this._isDestroyed &&
 
         // Click originates from outside the menu content
         // Multiple selects don't close when an item is clicked
         (!this.getContent() ||
-        !this.getContent().contains(e.target as Node)) &&
+        !this.getContent().contains(customTarget as Node)) &&
 
         // Click originates from outside the element
         this.$el &&
-        !this.$el.contains(e.target as Node) &&
-        e.target !== this.$el
+        !this.$el.contains(customTarget as Node) &&
+        customTarget !== this.$el
       )
     },
     filterDuplicates (arr: any[]) {

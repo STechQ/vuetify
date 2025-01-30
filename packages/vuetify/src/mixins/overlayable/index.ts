@@ -100,28 +100,31 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
 
       return true
     },
+    destroyOverloy() {
+      if (
+        !this.overlay ||
+        !this.overlay.$el ||
+        !this.overlay.$el.parentNode ||
+        this.overlay.value
+      ) return
+
+      this.overlay.$el.parentNode.removeChild(this.overlay.$el)
+      this.overlay.$destroy()
+      this.overlay = null
+    },
     /** removeOverlay(false) will not restore the scollbar afterwards */
     removeOverlay (showScroll = true) {
       if (this.overlay) {
         addOnceEventListener(this.overlay.$el, 'transitionend', () => {
-          if (
-            !this.overlay ||
-            !this.overlay.$el ||
-            !this.overlay.$el.parentNode ||
-            this.overlay.value
-          ) return
-
-          this.overlay.$el.parentNode.removeChild(this.overlay.$el)
-          this.overlay.$destroy()
-          this.overlay = null
+          this.destroyOverloy();
         })
 
         // Cancel animation frame in case
         // overlay is removed before it
         // has finished its animation
         cancelAnimationFrame(this.animationFrame)
-
         this.overlay.value = false
+        this.destroyOverloy()
       }
 
       showScroll && this.showScroll()

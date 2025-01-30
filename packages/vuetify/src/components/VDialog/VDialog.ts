@@ -163,7 +163,7 @@ export default baseMixins.extend({
       })
     },
     closeConditional (e: Event) {
-      const target = e.target as HTMLElement
+      const target = e.shadowRoot || e.target as HTMLElement
       // Ignore the click if the dialog is closed or destroyed,
       // if it was on an element inside the content,
       // if it was dragged onto the overlay (#6969),
@@ -187,7 +187,7 @@ export default baseMixins.extend({
       // Double nextTick to wait for lazy content to be generated
       this.$nextTick(() => {
         this.$nextTick(() => {
-          this.previousActiveElement = document.activeElement as HTMLElement
+          this.previousActiveElement = document.activeElement?.shadowRoot?.activeElement || document.activeElement as HTMLElement
           this.$refs.content.focus()
           this.bind()
         })

@@ -30,7 +30,7 @@ function directive (e: PointerEvent, el: HTMLElement, binding: ClickOutsideDirec
   const elements = ((typeof binding.value === 'object' && binding.value.include) || (() => []))()
   // Add the root element for the component this directive was defined on
   elements.push(el)
-
+  e.shadowRoot = e.target;
   // Check if it's a click outside our elements, and then if our callback returns true.
   // Non-toggleable components should take action in their callback and return falsy.
   // Toggleable can return true if it wants to deactivate.

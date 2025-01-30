@@ -446,8 +446,8 @@ export default baseMixins.extend<options>().extend({
     },
     onFocus (e?: Event) {
       if (!this.$refs.input) return
-
-      if (document.activeElement !== this.$refs.input) {
+      const plateauShadowActiveElement = document.activeElement?.shadowRoot?.activeElement || document.activeElement
+      if (plateauShadowActiveElement !== this.$refs.input) {
         return this.$refs.input.focus()
       }
 

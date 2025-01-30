@@ -265,7 +265,7 @@ export default baseMixins.extend({
       e.preventDefault()
     },
     closeConditional (e: Event) {
-      const target = e.target as HTMLElement
+      const target = e.shadowRoot || e.target as HTMLElement
 
       return this.isActive &&
         !this._isDestroyed &&

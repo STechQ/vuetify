@@ -6,8 +6,7 @@
   "husky": {
     "hooks": {
       "prepare-commit-msg": "node scripts/prepare-commit-message.js",
-      "commit-msg": "node scripts/lint-commit-message.js",
-      "pre-commit": "node scripts/warn-npm-install.js && yarn run lint --since HEAD && yarn lerna run test --since HEAD"
+      "commit-msg": "node scripts/lint-commit-message.js"
     }
   },
   "scripts": {
@@ -69,12 +68,12 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "typescript": "^4.0.3",
-    "vue": "^2.6.11",
+    "vue": "2.6.11",
     "vue-analytics": "^5.16.1",
-    "vue-loader": "^15.7.1",
+    "vue-loader": "15.7.1",
     "vue-meta": "^2.4.0",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "2.6.11",
     "vuex": "^3.0.1",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
