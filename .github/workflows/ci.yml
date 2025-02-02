@@ -21,4 +21,6 @@ jobs:
         run: npm run build
       - name: publish
         working-directory: ./packages/vuetify
-        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_SECRET_AUTOMATION}}
+        run: npm publish -w 
