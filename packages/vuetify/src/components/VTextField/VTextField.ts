@@ -502,6 +502,7 @@ export default baseMixins.extend<options>().extend({
         !this.autofocus ||
         typeof document === 'undefined' ||
         !this.$refs.input ||
+        document.activeElement?.shadowRoot?.activeElement === this.$refs.input ||
         document.activeElement === this.$refs.input
       ) return false
 

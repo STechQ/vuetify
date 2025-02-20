@@ -129,10 +129,10 @@ export default mixins<options &
       let target
       if (this.attach === false) {
         // Default, detach to app
-        target = document.querySelector('[data-app]')
+        target = window["plateau_shadowRoot"]?.querySelector('[data-app]') || document.querySelector('[data-app]')
       } else if (typeof this.attach === 'string') {
         // CSS selector
-        target = document.querySelector(this.attach)
+        target = window["plateau_shadowRoot"]?.querySelector(this.attach) || document.querySelector(this.attach)
       } else {
         // DOM Element
         target = this.attach

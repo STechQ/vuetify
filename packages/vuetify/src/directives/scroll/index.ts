@@ -17,10 +17,11 @@ function inserted (el: HTMLElement, binding: ScrollVNodeDirective) {
   const options = (typeof value === 'object' && value.options) || { passive: true }
   const handler = typeof value === 'function' || 'handleEvent' in value ? value : value.handler
 
+  const doc = window["plateau_shadowRoot"] || document
   const target = self
     ? el
     : binding.arg
-      ? document.querySelector(binding.arg)
+      ? doc.querySelector(binding.arg)
       : window
 
   if (!target) return
