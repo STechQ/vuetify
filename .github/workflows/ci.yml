@@ -1,5 +1,12 @@
 name: CI
-on: [push, pull_request]
+on: 
+  push: 
+    branches:
+      - v2-shadow-root
+  pull_request:
+    branches:
+      - v2-shadow-root
+  workflow_dispatch:
 
 jobs:
   build:
