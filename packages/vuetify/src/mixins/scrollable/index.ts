@@ -67,7 +67,7 @@ export default Vue.extend({
 
   mounted () {
     if (this.scrollTarget) {
-      const doc = window["plateau_shadowRoot"] || document
+      const doc = document['getPlateauShadowRoot']() || document
       this.target = doc.querySelector(this.scrollTarget)
 
       if (!this.target) {

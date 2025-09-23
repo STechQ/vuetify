@@ -73,7 +73,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
 
       const parent = this.absolute
         ? this.$el.parentNode
-        : window["plateau_shadowRoot"]?.querySelector('[data-app]') || document.querySelector('[data-app]')
+        : document.querySelector('[data-app]')
 
       parent && parent.insertBefore(overlay.$el, parent.firstChild)
 
@@ -100,7 +100,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
 
       return true
     },
-    destroyOverloy() {
+    destroyOverlay() {
       if (
         !this.overlay ||
         !this.overlay.$el ||
@@ -116,7 +116,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
     removeOverlay (showScroll = true) {
       if (this.overlay) {
         addOnceEventListener(this.overlay.$el, 'transitionend', () => {
-          this.destroyOverloy();
+          this.destroyOverlay();
         })
 
         // Cancel animation frame in case
@@ -124,7 +124,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
         // has finished its animation
         cancelAnimationFrame(this.animationFrame)
         this.overlay.value = false
-        this.destroyOverloy()
+        this.destroyOverlay()
       }
 
       showScroll && this.showScroll()
@@ -150,7 +150,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
       }
 
       if (e.target === this.overlay ||
-        (e.type !== 'keydown' && e.target === window["plateau_shadowRoot"] || e.target === document.body) ||
+        (e.type !== 'keydown' && e.target === document['getPlateauShadowRoot']() || e.target === document.body) ||
         this.checkPath(e)) e.preventDefault()
     },
     hasScrollbar (el?: Element) {
@@ -166,7 +166,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
     isInside (el: Element, parent: Element): boolean {
       if (el === parent) {
         return true
-      } else if (el === null || el === window["plateau_shadowRoot"] || el === document.body) {
+      } else if (el === null || el === document['getPlateauShadowRoot']() || el === document.body) {
         return false
       } else {
         return this.isInside(el.parentNode as Element, parent)
@@ -176,7 +176,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
       const path = e.path || this.composedPath(e)
       const delta = e.deltaY
 
-      if (e.type === 'keydown' && path[0] === window["plateau_shadowRoot"] || path[0] === document.body) {
+      if (e.type === 'keydown' && path[0] === document['getPlateauShadowRoot']() || path[0] === document.body) {
         const dialog = this.$refs.dialog
         // getSelection returns null in firefox in some edge cases, can be ignored
         const selected = window.getSelection()!.anchorNode as Element

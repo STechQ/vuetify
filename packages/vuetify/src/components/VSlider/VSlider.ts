@@ -225,7 +225,8 @@ export default mixins<options &
 
   mounted () {
     // Without a v-app, iOS does not work with body selectors
-    this.app = window["plateau_shadowRoot"]?.querySelector('[data-app]') || document.querySelector('[data-app]') ||
+    // window["plateau_shadowRoot"]?.querySelector('[data-app]') 
+    this.app = document.querySelector('[data-app]') ||
       consoleWarn('Missing v-app or a non-body wrapping element with the [data-app] attribute', this)
   },
 

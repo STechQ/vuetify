@@ -187,7 +187,7 @@ export default baseMixins.extend({
       // Double nextTick to wait for lazy content to be generated
       this.$nextTick(() => {
         this.$nextTick(() => {
-          this.previousActiveElement = document.activeElement?.shadowRoot?.activeElement || document.activeElement as HTMLElement
+          this.previousActiveElement = document['getPlateauShadowRoot']().activeElement || document.activeElement as HTMLElement
           this.$refs.content.focus()
           this.bind()
         })
