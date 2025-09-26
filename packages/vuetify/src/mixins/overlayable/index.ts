@@ -150,7 +150,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
       }
 
       if (e.target === this.overlay ||
-        (e.type !== 'keydown' && e.target === document['getPlateauShadowRoot']() || e.target === document.body) ||
+        (e.type !== 'keydown' && e.target === document['getPlateauShadowRoot'](document.body) || e.target === document.body) ||
         this.checkPath(e)) e.preventDefault()
     },
     hasScrollbar (el?: Element) {
@@ -166,7 +166,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
     isInside (el: Element, parent: Element): boolean {
       if (el === parent) {
         return true
-      } else if (el === null || el === document['getPlateauShadowRoot']() || el === document.body) {
+      } else if (el === null || el === document['getPlateauShadowRoot'](document.body) || el === document.body) {
         return false
       } else {
         return this.isInside(el.parentNode as Element, parent)
@@ -176,7 +176,7 @@ export default Vue.extend<Vue & Toggleable & Stackable & options>().extend({
       const path = e.path || this.composedPath(e)
       const delta = e.deltaY
 
-      if (e.type === 'keydown' && path[0] === document['getPlateauShadowRoot']() || path[0] === document.body) {
+      if (e.type === 'keydown' && path[0] === document['getPlateauShadowRoot'](document.body) || path[0] === document.body) {
         const dialog = this.$refs.dialog
         // getSelection returns null in firefox in some edge cases, can be ignored
         const selected = window.getSelection()!.anchorNode as Element

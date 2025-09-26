@@ -446,7 +446,7 @@ export default baseMixins.extend<options>().extend({
     },
     onFocus (e?: Event) {
       if (!this.$refs.input) return
-      const plateauShadowActiveElement = document['getPlateauShadowRoot']()?.activeElement || document.activeElement
+      const plateauShadowActiveElement = document['getPlateauShadowRoot'](document).activeElement
       if (plateauShadowActiveElement !== this.$refs.input) {
         return this.$refs.input.focus()
       }
@@ -502,7 +502,7 @@ export default baseMixins.extend<options>().extend({
         !this.autofocus ||
         typeof document === 'undefined' ||
         !this.$refs.input ||
-        document['getPlateauShadowRoot']()?.activeElement === this.$refs.input ||
+        document['getPlateauShadowRoot'](document).activeElement === this.$refs.input ||
         document.activeElement === this.$refs.input
       ) return false
 
