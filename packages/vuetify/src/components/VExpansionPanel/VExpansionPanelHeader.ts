@@ -68,11 +68,11 @@ export default baseMixins.extend<options>().extend({
   },
 
   created () {
-    this.expansionPanel && this.expansionPanel.registerHeader(this)
+    this.expansionPanel.registerHeader?.(this)
   },
 
   beforeDestroy () {
-    this.expansionPanel && this.expansionPanel.unregisterHeader()
+    this.expansionPanel.unregisterHeader?.()
   },
 
   methods: {
