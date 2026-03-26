@@ -35,11 +35,11 @@ export default baseMixins.extend<options>().extend({
   },
 
   created () {
-    this.expansionPanel.registerContent(this)
+    this.expansionPanel && this.expansionPanel.registerContent(this)
   },
 
   beforeDestroy () {
-    this.expansionPanel.unregisterContent()
+    this.expansionPanel && this.expansionPanel.unregisterContent()
   },
 
   render (h): VNode {
